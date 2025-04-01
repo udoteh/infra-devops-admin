@@ -1,0 +1,12 @@
+- name: Initial VM setup
+  hosts: devops
+  become: yes
+  tasks:
+    - name: Install common packages
+      apt:
+        name: [vim, curl, git, htop]
+        update_cache: yes
+    - name: Enable UFW and allow SSH
+      ufw:
+        rule: allow
+        name: 'OpenSSH'

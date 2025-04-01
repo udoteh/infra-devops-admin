@@ -1,0 +1,19 @@
+name: Infra Deployment
+
+on:
+  push:
+    paths:
+      - terraform/**
+      - ansible/**
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Run Ansible playbook
+        uses: dawidd6/action-ansible-playbook@v2
+        with:
+          playbook: ansible/playbooks/setup.yml

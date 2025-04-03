@@ -20,8 +20,10 @@ data "vsphere_compute_cluster" "cluster" {
 }
 
 data "vsphere_resource_pool" "pool" {
-  name              = "Resources"
-  compute_cluster_id = data.vsphere_compute_cluster.cluster.id
+  name          = "Resources"
+  datacenter_id = data.vsphere_datacenter.dc.id
+}
+
 }
 
 data "vsphere_network" "network" {
@@ -30,7 +32,7 @@ data "vsphere_network" "network" {
 }
 
 data "vsphere_virtual_machine" "template" {
-  name          = var.template_name
+  name          = "ubuntu-template"   # Your powered-off VM's name
   datacenter_id = data.vsphere_datacenter.dc.id
 }
 

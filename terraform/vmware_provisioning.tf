@@ -14,25 +14,13 @@ data "vsphere_datastore" "datastore" {
   datacenter_id = data.vsphere_datacenter.dc.id
 }
 
-data "vsphere_compute_cluster" "cluster" {
-  name          = var.cluster
-  datacenter_id = data.vsphere_datacenter.dc.id
-}
-
 data "vsphere_resource_pool" "pool" {
   name          = "Resources"
   datacenter_id = data.vsphere_datacenter.dc.id
 }
 
-}
-
 data "vsphere_network" "network" {
   name          = var.network_name
-  datacenter_id = data.vsphere_datacenter.dc.id
-}
-
-data "vsphere_virtual_machine" "template" {
-  name          = "ubuntu-template"   # Your powered-off VM's name
   datacenter_id = data.vsphere_datacenter.dc.id
 }
 
@@ -53,11 +41,13 @@ resource "vsphere_virtual_machine" "ubuntu_vm" {
   disk {
     label            = "disk0"
     size             = 40
-    eagerly_scrub    = false
     thin_provisioned = true
   }
 
-  clone {
-    template_uuid = data.vsphere_virtual_machine.template.id
+  cdrom {
+    datastore_id = data.vsphere_datastore.datastore.id
+    path         = "ubuntu-22.04.5-live-server-amd64.iso" # Update with your actual ISO filename
   }
+
+  wait_for_guest_net_timeout = -1
 }

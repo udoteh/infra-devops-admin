@@ -46,7 +46,7 @@ resource "vsphere_virtual_machine" "ubuntu_vm" {
 
   cdrom {
     datastore_id = data.vsphere_datastore.datastore.id
-    path         = "ubuntu-22.04.5-live-server-amd64.iso" # Update with your actual ISO filename
+    path         = "ubuntu-24.04.1-desktop-amd64.iso" 
   }
 
   wait_for_guest_net_timeout = -1

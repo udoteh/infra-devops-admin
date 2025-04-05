@@ -41,7 +41,7 @@ resource "vsphere_virtual_machine" "ubuntu_vm" {
 
   disk {
     label            = "disk0"
-    size             = 40
+    size             = 100
     thin_provisioned = true
   }
 

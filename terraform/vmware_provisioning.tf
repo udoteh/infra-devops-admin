@@ -25,8 +25,8 @@ data "vsphere_network" "network" {
 }
 
 resource "vsphere_virtual_machine" "ubuntu_vm" {
-  count            = 3
-  name             = "devops-vm-${count.index + 1}"
+  count            = 2
+  name             = "devops-vm-${count.index + 2}"
   resource_pool_id = data.vsphere_resource_pool.pool.id
   datastore_id     = data.vsphere_datastore.datastore.id
 

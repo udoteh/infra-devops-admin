@@ -2,11 +2,11 @@
   hosts: devops
   become: yes
   tasks:
-    - name: Install common packages
-      apt:
-        name: [vim, curl, git, htop]
-        update_cache: yes
-    - name: Enable UFW and allow SSH
-      ufw:
-        rule: allow
-        name: 'OpenSSH'
+    -  name: install common packages (including restic)
+       apt:
+         name: [vim, curl, git, htop, restic]
+         update_cache: yes
+    -  name: Enable UFW and alllow SSH
+       ufw:
+         rule: allow
+         name: 'OpenSSH'

@@ -1,8 +1,0 @@
-- name: System patching
-  hosts: devops
-  become: yes
-  tasks:
-    - name: Update and upgrade
-      apt:
-        upgrade: dist
-        update_cache: yes

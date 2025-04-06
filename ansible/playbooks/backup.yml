@@ -4,12 +4,14 @@
   tasks:
     - name: Copy backup script
       copy:
-        src: ../../backup/restic-backup.sh
+        src: files/restic-backup.sh
         dest: /usr/local/bin/restic-backup.sh
         mode: '0755'
+
     - name: Schedule backup with cron
       cron:
         name: "Daily Restic Backup"
         job: "/usr/local/bin/restic-backup.sh"
         minute: 0
         hour: 2
+
